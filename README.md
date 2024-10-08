@@ -65,21 +65,27 @@ Key features:
 6. Open a web browser and navigate to `http://127.0.0.1:8000/` to access the application.
 
 ## Usage
-
+![main page app](images/main.png)
 ### Text Processing App
-
 1. Navigate to the Text Processing App from the main page.
+![file_handler](images/file_handler_1.png)
 2. Upload a text file using the provided form.
 3. The app will process the text, shuffling the middle letters of each word.
+![file_handler](images/file_handler_2.png)
 4. View the processed text on the result page.
+![file_handler](images/file_handler_3.png)
 5. Optionally, save the processed text to a new file.
 
 ### PESEL Validator
 
 1. Navigate to the PESEL Validator from the main page.
 2. Enter a PESEL number in the input field.
+![pesel_validator](images/pesel_validator_1.png)
 3. Submit the form to validate the PESEL number.
 4. View the validation results, including validity, birth date, and gender.
+![pesel_validator](images/pesel_validator_positive.png)
+
+![pesel_validator](images/pesel_validator_negative.png)
 
 ## Contributing
 
