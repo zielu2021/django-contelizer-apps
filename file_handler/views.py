@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 
 def shuffle_word(word):
-    if len(word) <= 3:
+    if len(word) < 4: 
         return word
     middle = list(word[1:-1])
     random.shuffle(middle)
