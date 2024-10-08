@@ -1,71 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processed Text</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        .message {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-        .error {
-            background-color: #ffcccc;
-            border: 1px solid #ff0000;
-        }
-        .success {
-            background-color: #ccffcc;
-            border: 1px solid #00ff00;
-        }
-        .close-btn {
-            float: right;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .result-container {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 20px;
-            margin-top: 20px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .back-link:hover {
-            background-color: #2980b9;
-        }
-        @media screen and (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .result-container {
-                padding: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'file_handler/css/style.css' %}">
 </head>
 <body>
     <h1>Processed Text</h1>
@@ -79,10 +19,20 @@
         {% endfor %}
     </div>
     {% endif %}
-    <div class="result-container">
-        {{ processed_content }}
+    <div class="content-container">
+        <div class="result-text">
+            {{ processed_content }}
+        </div>
     </div>
-    <a href="{% url 'upload_file' %}" class="back-link">Upload another file</a>
+    <div class="button-container">
+        <a href="{% url 'upload_file' %}" class="button">Upload another file</a>
+        <form method="post" action="{% url 'save_result' %}" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="processed_content" value="{{ processed_content }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
+            <button type="submit" class="button">Save Result</button>
+        </form>
+    </div>
 
     <script>
         setTimeout(function() {

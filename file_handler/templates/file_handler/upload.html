@@ -1,29 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Text File</title>
-    <style>
-        .message {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-        .error {
-            background-color: #ffcccc;
-            border: 1px solid #ff0000;
-        }
-        .success {
-            background-color: #ccffcc;
-            border: 1px solid #00ff00;
-        }
-        .close-btn {
-            float: right;
-            cursor: pointer;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'file_handler/css/style.css' %}">
 </head>
 <body>
     <h1>Upload a Text File</h1>
@@ -37,11 +19,13 @@
         {% endfor %}
     </div>
     {% endif %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="file" accept=".txt">
-        <button type="submit">Upload and Process</button>
-    </form>
+    <div class="content-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file" accept=".txt">
+            <button type="submit" class="button">Upload and Process</button>
+        </form>
+    </div>
 
     <script>
         setTimeout(function() {

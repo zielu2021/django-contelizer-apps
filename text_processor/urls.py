@@ -22,5 +22,5 @@ from file_handler import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.upload_file, name='upload_file'),
-    path('result/<str:filename>/', views.result, name='result'),
+    path('save/', views.save_result, name='save_result'),
 ]

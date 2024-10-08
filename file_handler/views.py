@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.contrib import messages
+from django.http import HttpResponse
 
 def shuffle_word(word):
     if len(word) <= 3:
@@ -31,22 +32,22 @@ def upload_file(request):
             file_content = uploaded_file.read().decode('utf-8')
             processed_content = process_text(file_content)
             
-            new_filename = f"processed_{uploaded_file.name}"
-            default_storage.save(new_filename, ContentFile(processed_content))
-
-            messages.success(request, 'File uploaded and processed successfully!')
-            return redirect('result', filename=new_filename)
+            messages.success(request, 'File processed successfully!')
+            return render(request, 'file_handler/result.html', {'processed_content': processed_content, 'original_filename': uploaded_file.name})
         except UnicodeDecodeError:
             messages.error(request, 'Unable to read the file. Please ensure it contains valid text.')
             return render(request, 'file_handler/upload.html')
     
     return render(request, 'file_handler/upload.html')
 
-def result(request, filename):
-    try:
-        with default_storage.open(filename, 'r') as file:
-            processed_content = file.read()
-        return render(request, 'file_handler/result.html', {'processed_content': processed_content})
-    except FileNotFoundError:
-        messages.error(request, 'The processed file was not found. Please try uploading again.')
-        return redirect('upload_file')
+def save_result(request):
+    if request.method == 'POST':
+        processed_content = request.POST.get('processed_content')
+        original_filename = request.POST.get('original_filename')
+        if processed_content and original_filename:
+            new_filename = f"processed_{original_filename}"
+            default_storage.save(new_filename, ContentFile(processed_content))
+            response = HttpResponse(processed_content, content_type='text/plain')
+            response['Content-Disposition'] = f'attachment; filename="{new_filename}"'
+            return response
+    return redirect('upload_file')
