@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}PESEL Validation Result{% endblock %}
+
+{% block content %}
+<h1>PESEL Validation Result</h1>
+<div class="content-container">
+    <p><strong>PESEL:</strong> {{ pesel }}</p>
+    <p><strong>Valid:</strong> {% if is_valid %}Yes{% else %}No{% endif %}</p>
+    {% if is_valid %}
+        <p><strong>Birth Date:</strong> {{ birth_date }}</p>
+        <p><strong>Gender:</strong> {{ gender }}</p>
+    {% endif %}
+    <div class="button-container">
+        <a href="{% url 'pesel_validator:validate_pesel' %}" class="button button-primary">Validate Another PESEL</a>
+        <a href="{% url 'main' %}" class="button button-secondary">Back to Main Page</a>
+    </div>
+</div>
+{% endblock %}

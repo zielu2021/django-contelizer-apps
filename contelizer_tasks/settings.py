@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'file_handler',
+    'pesel_validator',
 ]
 
 MIDDLEWARE = [
@@ -52,12 +53,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'text_processor.urls'
+ROOT_URLCONF = 'contelizer_tasks.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'text_processor.wsgi.application'
+WSGI_APPLICATION = 'contelizer_tasks.wsgi.application'
 
 
 # Database
@@ -122,6 +123,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
 STATIC_URL
 ]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

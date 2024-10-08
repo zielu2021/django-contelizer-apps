@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Contelizer Tasks{% endblock %}
+
+{% block content %}
+<h1>Welcome to Contelizer Tasks</h1>
+<div class="content-container">
+    <h2>Available Tasks:</h2>
+    <div class="button-container">
+        <a href="{% url 'file_handler:upload_file' %}" class="button button-primary">Task 1: File Handler</a>
+        <a href="{% url 'pesel_validator:validate_pesel' %}" class="button button-secondary">Task 2: PESEL Validator</a>
+    </div>
+</div>
+{% endblock %}

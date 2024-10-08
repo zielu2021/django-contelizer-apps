@@ -1,39 +1,41 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Text File</title>
-    <link rel="stylesheet" href="{% static 'file_handler/css/style.css' %}">
-</head>
-<body>
-    <h1>Upload a Text File</h1>
-    {% if messages %}
-    <div id="message-container">
-        {% for message in messages %}
-        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
-            {{ message }}
-            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    <div class="content-container">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" name="file" accept=".txt">
-            <button type="submit" class="button">Upload and Process</button>
-        </form>
-    </div>
+{% extends "base.html" %}
 
-    <script>
-        setTimeout(function() {
-            var messages = document.getElementsByClassName('message');
-            for (var i = 0; i < messages.length; i++) {
-                messages[i].style.display = 'none';
-            }
-        }, 3000);
-    </script>
-</body>
-</html>
+{% block title %}Upload Text File{% endblock %}
+
+{% block content %}
+<h1>Upload a Text File</h1>
+
+{% if messages %}
+<div class="message-container">
+    {% for message in messages %}
+    <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+        {{ message }}
+        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="content-container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="file">Select a text file:</label>
+            <input type="file" id="file" name="file" accept=".txt" required>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="button button-primary">Upload and Process</button>
+            <a href="{% url 'main' %}" class="button button-secondary">Back to Main Page</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    setTimeout(function() {
+        var messages = document.getElementsByClassName('message');
+        for (var i = 0; i < messages.length; i++) {
+            messages[i].style.display = 'none';
+        }
+    }, 3000);
+</script>
+{% endblock %}

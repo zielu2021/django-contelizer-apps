@@ -15,12 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from file_handler import views
-
+from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.upload_file, name='upload_file'),
-    path('save/', views.save_result, name='save_result'),
+    path('', TemplateView.as_view(template_name='main.html'), name='main'),
+    path('file-handler/', include(('file_handler.urls', 'file_handler'), namespace='file_handler')),
+    path('pesel-validator/', include(('pesel_validator.urls', 'pesel_validator'), namespace='pesel_validator')),
 ]

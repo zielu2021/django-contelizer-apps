@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}PESEL Validator{% endblock %}
+
+{% block content %}
+<h1>PESEL Validator</h1>
+<div class="content-container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="pesel">Enter PESEL number:</label>
+            <input type="text" id="pesel" name="pesel" required>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="button button-primary">Validate</button>
+            <a href="{% url 'main' %}" class="button button-secondary">Back to Main Page</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
