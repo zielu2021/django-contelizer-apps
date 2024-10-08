@@ -34,11 +34,12 @@ Key features:
 - JavaScript (for minor interactions)
 
 ## Setup and Installation
+### Option 1: Local Environment
 
 1. Clone the repository:
    ```
    git clone https://github.com/zielu2021/django-contelizer-apps.git
-   cd contelizer-tasks
+   cd django-contelizer-apps
    ```
 
 2. Create a virtual environment and activate it:
@@ -60,6 +61,25 @@ Key features:
 5. Run the development server:
    ```
    python manage.py runserver
+   ```
+
+6. Open a web browser and navigate to `http://127.0.0.1:8000/` to access the application.
+
+### Option 2: Using Docker
+1. Clone the repository:
+   ```
+   git clone https://github.com/zielu2021/django-contelizer-apps.git
+   cd django-contelizer-apps
+   ```
+
+2. Build the Docker image:
+   ```
+   docker build -t contelizer-app .
+   ```
+
+3. Run the Docker container:
+   ```
+   docker run -p 8000:8000 contelizer-app
    ```
 
 6. Open a web browser and navigate to `http://127.0.0.1:8000/` to access the application.
