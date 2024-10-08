@@ -1,0 +1,14 @@
+The quick brown fox jumps over the lazy dog. 
+This sentence contains every letter of the alphabet!
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+1234 is a number, not a word.
+
+Short words: a an the in of to
+
+Pneumonoultramicroscopicsilicovolcanoconiosis is a very long word!
+
+"Quotes" and (parentheses) should remain unchanged.
+
+The end.
