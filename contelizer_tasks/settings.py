@@ -27,7 +27,11 @@ SECRET_KEY = 'django-insecure-enu+05ryk!s#zu(af$#)g)31m9w2b5_k7umsq&67y()hzohr1-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'django-contelizer-apps.onrender.com'  # Add your Render domain here
+]
 
 
 # Application definition
